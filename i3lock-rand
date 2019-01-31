@@ -1,0 +1,9 @@
+#!/bin/bash
+
+images='/usr/share/backgrounds/gnome'
+
+cnt=$(ls $images/*.png | wc -l)
+randnum=$((RANDOM%$cnt+1))
+background=$(ls $images/*.png | sed -n "${randnum}p")
+
+i3lock -i $background
