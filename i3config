@@ -179,6 +179,7 @@ bar {
 }
 
 exec xcompmgr -n
+focus_follows_mouse no
 
 #### volume control
 set $volumepath /usr/local/bin
