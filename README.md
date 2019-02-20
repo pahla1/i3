@@ -5,6 +5,7 @@ i3
 `xcompmgr`: composite manager for shadows and transparency  
 `import`: screenshot creator  
 `xclip`: clipboard manager for sending screenshot to clipboard
+`pulseaudio-utils`: Sound system for POSTIX OSes
 
 ```bash
 sudo apt install xcompmgr xclip
@@ -14,6 +15,7 @@ sudo apt install xcompmgr xclip
 `feh-rand`: same as `feh` but use a url to fetch random wallpapers. copy it to system `PATH` (/usr/local/bin).  
 `i3lock-rand`: lock i3 with random images from a path. copy it to system `PATH`.  
 `i3config`: my personal i3 config file. copy it to `~/.config/i3/config` (Debian) or `~/.i3/config` (Ubuntu).  
+`volume`: volume control script. copy it to `/usr/local/bin`.
 
 custom shortcuts:
 * **Super + Z**: go to workspace 16 (my personal workspace)

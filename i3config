@@ -48,7 +48,7 @@ bindsym $mod+k focus down
 bindsym $mod+semicolon focus right
 
 # lock screen
-bindsym $mod+l exec 'i3lock-rand'
+bindsym $mod+l exec '/usr/local/bin/i3lock-rand'
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -179,3 +179,12 @@ bar {
 }
 
 exec xcompmgr -n
+
+#### volume control
+set $volumepath /usr/local/bin
+set $statuscmd i3status
+set $statussig SIGUSR1
+set $volumestep 10
+bindsym XF86AudioRaiseVolume exec $volumepath/volume -np -i $volumestep -t $statuscmd -u $statussig
+bindsym XF86AudioLowerVolume exec $volumepath/volume -np -d $volumestep -t $statuscmd -u $statussig
+bindsym XF86AudioMute        exec $volumepath/volume -mn -t $statuscmd -u $statussig
