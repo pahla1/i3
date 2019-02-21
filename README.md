@@ -8,7 +8,7 @@ i3
 `pulseaudio-utils`: Sound system for POSTIX OSes
 
 ```bash
-sudo apt install xcompmgr xclip
+sudo apt install xcompmgr xclip pulseaudio-utils
 ```
 
 ## Setup
