@@ -4,7 +4,7 @@ i3
 ## Dependencies
 `xcompmgr`: composite manager for shadows and transparency  
 `import`: screenshot creator  
-`xclip`: clipboard manager for sending screenshot to clipboard
+`xclip`: clipboard manager for sending screenshot to clipboard  
 `pulseaudio-utils`: Sound system for POSTIX OSes
 
 ```bash
