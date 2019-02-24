@@ -1,6 +1,6 @@
 #!/bin/bash
 
-images='/usr/share/backgrounds/gnome'
+images='/usr/local/share/backgrounds'
 
 cnt=$(ls $images/*.png | wc -l)
 randnum=$((RANDOM%$cnt+1))

@@ -36,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -48,7 +48,7 @@ bindsym $mod+k focus down
 bindsym $mod+semicolon focus right
 
 # lock screen
-bindsym $mod+l exec '/usr/local/bin/i3lock-rand'
+bindsym $mod+l exec slimlock
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -88,7 +88,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 
-#bindsym $mod+space exec --no-startup-id bash -c "setxkbmap -layout us,ir -option grp:win_space_toggle"
+bindsym $mod+space exec /usr/local/bin/set-layout
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -107,7 +107,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-bindsym $mod+z workspace 16
+bindsym $mod+z workspace p
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -120,7 +120,7 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-bindsym $mod+Shift+z move container to workspace 16
+bindsym $mod+Shift+z move container to workspace p
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -162,30 +162,49 @@ bindsym --release $mod+Shift+Print exec import png:- | xclip -selection clipboar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        #status_command /usr/local/bin/i3script.sh
+        #status_command /usr/local/bin/i3status-custom.sh
         status_command i3status
+	mode hide
+	hidden_state hide
+	modifier Mod4
 	font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 	font pango:DejaVu Sans Mono 10
-	separator_symbol "||"
-	colors {
-          background #101010
-          statusline #ecdfc6
-           
-          focused_workspace #76d119 #101010 #76d119
-          active_workspace #468499 #101010 #468499
-          inactive_workspace #636363 #101010 #ecdfc6
-          urgent_workspace #df503e #df503e #ecdfc6
-	}    
+	#colors {
+        #  background #101010
+        #  statusline #ecdfc6
+        #   
+        #  focused_workspace #76d119 #101010 #76d119
+        #  active_workspace #468499 #101010 #468499
+        #  inactive_workspace #636363 #101010 #ecdfc6
+        #  urgent_workspace #df503e #df503e #ecdfc6
+	#}    
+        colors {
+          background #000000
+          statusline #FFFFFF
+          separator  #666666
+
+          focused_workspace  #F79E2B #232018 #F79E2B
+          active_workspace   #20FF18 #232018 #20FF18
+          inactive_workspace #333333 #232018 #498BAC
+          urgent_workspace   #FF0000 #D71D1D #FFFF0E
+          binding_mode       #333333 #9F170E #FFFFFF
+        }
 }
 
+bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#287700' -sf '#FFFFFF' -fn 'monospace-10' -p 'dmenu prompt >'"
 exec xcompmgr -n
+exec /usr/local/bin/feh-rand
 focus_follows_mouse no
 
 #### volume control
-set $volumepath /usr/local/bin
-set $statuscmd i3status
-set $statussig SIGUSR1
-set $volumestep 10
-bindsym XF86AudioRaiseVolume exec $volumepath/volume -np -i $volumestep -t $statuscmd -u $statussig
-bindsym XF86AudioLowerVolume exec $volumepath/volume -np -d $volumestep -t $statuscmd -u $statussig
-bindsym XF86AudioMute        exec $volumepath/volume -mn -t $statuscmd -u $statussig
+set $soundcard alsa_output.pci-0000_00_14.2.iec958-stereo
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $soundcard +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $soundcard -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $soundcard toggle # mute sound
+
+#### Calc
+bindsym XF86Calculator exec --no-startup-id "xfce4-terminal -e qalc"
+
+#### Assign app to workspace
+assign [class="teleg"] "p"
+assign [class="winbox.exe"] "p"
