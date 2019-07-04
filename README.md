@@ -4,7 +4,7 @@ i3
 ## Dependencies
 `xcompmgr`: composite manager for shadows and transparency  
 `xclip`: clipboard manager for sending screenshot to clipboard  
-`pulseaudio-utils`: Sound system for POSTIX OSes
+`pulseaudio-utils`: Sound system for POSTIX OSes.  
 `graphicsmagick-imagemagick-compat`: to use `import` command for screenshots.  
 `qalc`: command line calculator
 
