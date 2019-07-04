@@ -1,9 +1,0 @@
-#!/bin/bash
-
-cur=$(setxkbmap -query | awk '/layout:/ {print $2}')
-
-if [ $cur = 'us' ];then
-	setxkbmap ir
-else
-	setxkbmap us
-fi

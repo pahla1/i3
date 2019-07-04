@@ -88,7 +88,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 
-bindsym $mod+space exec /usr/local/bin/set-layout
+#bindsym $mod+space exec /usr/local/bin/set-layout
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -191,20 +191,35 @@ bar {
         }
 }
 
-bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#287700' -sf '#FFFFFF' -fn 'monospace-10' -p 'dmenu prompt >'"
+bindsym $mod+d exec "dmenu_run -nf '#BBBBBB' -nb '#222222' -sb '#287700' -sf '#FFFFFF' -fn 'monospace-10' -p 'dmenu prompt >' -b"
 exec xcompmgr -n
 exec /usr/local/bin/feh-rand
+exec /usr/local/bin/oc #run ocproxy
 focus_follows_mouse no
 
 #### volume control
-set $soundcard alsa_output.pci-0000_00_14.2.iec958-stereo
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $soundcard +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $soundcard -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $soundcard toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+#### spotify control. you need to install sp from https://gist.github.com/fa6258f3ff7b17747ee3.git
+bindsym $mod+greater exec "sp next"
+bindsym $mod+less exec "sp prev"
+bindsym $mod+slash exec "sp play"
 
 #### Calc
 bindsym XF86Calculator exec --no-startup-id "xfce4-terminal -e qalc"
 
-#### Assign app to workspace
-assign [class="teleg"] "p"
-assign [class="winbox.exe"] "p"
+#### Clipmenu
+exec --no-startup-id bash -c "DISPLAY=:0.0 /usr/local/bin/clipmenud"
+bindsym $mod+c exec clipmenu
+
+bindsym $mod+Shift+x move scratchpad
+bindsym $mod+x scratchpad show
+
+#### Workspace traverse
+bindsym $mod+Next workspace next
+bindsym $mod+Prior workspace prev
