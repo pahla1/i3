@@ -9,7 +9,7 @@ i3
 `qalc`: command line calculator
 
 ```bash
-sudo apt install xcompmgr xclip pulseaudio-utils graphicsmagick-imagemagick-compat qalc clipmenu
+sudo apt install xcompmgr xclip pulseaudio-utils graphicsmagick-imagemagick-compat qalc
 ```
 
 ## Setup
